@@ -1,6 +1,7 @@
 'use strict';
 
-const coffee = require('coffee-script');
+const coffee = require('coffeescript');
+
 const normalizeChecker = checker => {
   if (typeof checker === 'function') return checker;
   if (checker instanceof RegExp) return path => checker.test(path);
@@ -8,7 +9,6 @@ const normalizeChecker = checker => {
   return () => false;
 };
 const formatError = err => {
-  // console.log(err.message);
   const loc = err.location;
   let msg = `${err.name}: ${err.message}\n${err.code}`;
   if (loc) {
@@ -47,7 +47,7 @@ class CoffeeScriptCompiler {
     }
 
     try {
-      compiled = coffee.compile(data, options);
+      compiled = coffee.transpile(data, { ...options, plugins: ['transform-es2015-modules-commonjs'] });
     } catch (err) {
       return Promise.reject(formatError(err));
     }

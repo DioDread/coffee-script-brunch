@@ -12,7 +12,9 @@
     "test": "eslint index.js && eslint --env=mocha test.js && mocha"
   },
   "dependencies": {
-    "coffee-script": "~1.12.6"
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "coffeescript": "2.3.1"
   },
   "devDependencies": {
     "mocha": "^3.0",
